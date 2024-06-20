@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tpo_application/controllers/login_controller.dart';
+import 'package:tpo_application/screens/company/company_list_screen.dart';
 import 'package:tpo_application/utils/constants.dart';
 import 'package:tpo_application/utils/custom_log.dart';
 import 'package:tpo_application/utils/custom_text_style.dart';
@@ -47,6 +48,7 @@ class LoginScreen extends StatelessWidget {
                   // * Password Field
                   Obx(
                     () => TextFormField(
+                      validator: (value) => Validator.passwordValidation(value),
                       obscureText: LoginController.instance.isHidden,
                       onTapOutside: (event) => FocusScope.of(context).unfocus(),
                       decoration: customInputDecoration(
@@ -70,9 +72,20 @@ class LoginScreen extends StatelessWidget {
                   SizedBox.fromSize(
                     size: const Size.fromHeight(50),
                     child: ElevatedButton(
-                      onPressed: () async => LoginController.instance.loading
-                          ? customLog("Please wait")
-                          : await LoginController.instance.loginUser(),
+                      onPressed: () async {
+                        if (!controller.loading) {
+                          await controller.loginUser();
+                          if (!controller.loading) {
+                            Get.to(
+                                const CompanyListScreen()); // Navigate to HomePage after login
+                          }
+                        } else {
+                          customLog("Please wait");
+                        }
+                      },
+                      // LoginController.instance.loading
+                      //     ? customLog("Please wait")
+                      //     : await LoginController.instance.loginUser(),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: primary,
                         shape: RoundedRectangleBorder(
@@ -92,7 +105,7 @@ class LoginScreen extends StatelessWidget {
                               ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

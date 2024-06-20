@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tpo_application/screens/company/company_list_screen.dart';
 import 'package:tpo_application/utils/custom_log.dart';
 
 class LoginController extends GetxController {
@@ -23,6 +24,8 @@ class LoginController extends GetxController {
         return;
       }
       await Future.delayed(const Duration(seconds: 2));
+
+      Get.to(const CompanyListScreen());
     } catch (e) {
       customLog(e);
     } finally {
