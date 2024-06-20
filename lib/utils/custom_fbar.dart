@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tpo_application/utils/constants.dart';
-import 'package:tpo_application/utils/custom_dailogBox_company.dart';
+import 'package:tpo_application/utils/custom_dailog_box_company.dart';
 
 class CustomFbar extends StatelessWidget {
   final WidgetBuilder dailogBuilder;

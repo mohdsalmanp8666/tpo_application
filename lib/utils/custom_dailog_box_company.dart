@@ -10,14 +10,17 @@ class CustomDailogboxCompany extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      // TODO:  Auto Size Text
       title: const Text('Add Company'),
       content: Form(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            // TODO: Validator, controller, onTapOutside
             TextFormField(
               decoration: customInputDecoration(label: "Company Name"),
             ),
+            // TODO: Change SizedBox to Gap
             const SizedBox(
               height: 10,
             ),
@@ -42,6 +45,8 @@ class CustomDailogboxCompany extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
+            // TODO: Validator, controller, onTapOutside
+
             TextFormField(
               decoration: customInputDecoration(label: 'Contact'),
             ),
@@ -58,6 +63,7 @@ class CustomDailogboxCompany extends StatelessWidget {
             style: customTextStyle(fontSize: 16, color: Colors.red.shade400),
           ),
         ),
+        // TODO: Chnage Outlined Button
         TextButton(
           onPressed: () {},
           child: Text(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tpo_application/screens/company/company_list_screen.dart';
 import 'package:tpo_application/utils/custom_log.dart';
+import 'package:tpo_application/utils/custom_toasts.dart';
 
 class LoginController extends GetxController {
   static LoginController get instance => Get.find<LoginController>();
@@ -16,6 +17,9 @@ class LoginController extends GetxController {
 
   GlobalKey<FormState> key = GlobalKey<FormState>();
 
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
   loginUser() async {
     try {
       loading = true;
@@ -25,7 +29,12 @@ class LoginController extends GetxController {
       }
       await Future.delayed(const Duration(seconds: 2));
 
-      Get.to(const CompanyListScreen());
+      if (emailController.text.trim() == 'abc@gmail.com' &&
+          passwordController.text.trim() == '123456') {
+        Get.to(const CompanyListScreen());
+      } else {
+        errorToast("Invalid Email/Password!");
+      }
     } catch (e) {
       customLog(e);
     } finally {

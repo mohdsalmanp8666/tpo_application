@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:tpo_application/screens/hr/hr_list_screen.dart';
 import 'package:tpo_application/utils/constants.dart';
-import 'package:tpo_application/utils/custom_dailogBox_company.dart';
+import 'package:tpo_application/utils/custom_dailog_box_company.dart';
 import 'package:tpo_application/utils/custom_fbar.dart';
 import 'package:tpo_application/utils/custom_text_style.dart';
 

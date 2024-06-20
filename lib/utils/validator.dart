@@ -1,8 +1,10 @@
-import 'dart:ffi';
-
 import 'package:get/get.dart';
 
 class Validator {
+
+  // TODO: Dynamic Validation
+
+  // * Email Validation
   static emailValidation(String? value) {
     if (value == null || value.isEmpty) {
       return 'Enter Email';
@@ -12,6 +14,7 @@ class Validator {
     return;
   }
 
+// * Password Validation
   static passwordValidation(String? value) {
     if (value == null || value.isEmpty) {
       return "Enter Password";
@@ -22,10 +25,13 @@ class Validator {
     }
   }
 
-  static contactValidation(String? value) {
+// TODO: Name/Company Name Validation
+
+// * Phone Number Validation
+  static phoneValidation(String? value) {
     if (value == null || value.isEmpty) {
       return "Enter Contact";
-    } else if (value.length == 10) {
+    } else if (value.isPhoneNumber || value.length != 10) {
       return "Contact must be at least 10 characters";
     } else {
       return;

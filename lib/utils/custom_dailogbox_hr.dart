@@ -10,24 +10,33 @@ class CustomDailogboxHr extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      // TODO: Autosizetext
       title: const Text('Add HR'),
       content: Form(
+        // TODO: Form Key in controller and assigning here
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            // TODO: Validator, controller, onTapOutside
+
             TextFormField(
               decoration: customInputDecoration(label: "HR Name"),
             ),
             const SizedBox(
               height: 10,
             ),
+            // TODO: Validator, controller, onTapOutside
+
             TextFormField(
               decoration: customInputDecoration(label: 'Email'),
             ),
             const SizedBox(
               height: 10,
             ),
+            // TODO: Validator, controller, onTapOutside
+
             TextFormField(
+              maxLength: 10,
               decoration: customInputDecoration(label: 'Contact'),
             ),
             const SizedBox(

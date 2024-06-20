@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tpo_application/utils/constants.dart';
+import 'package:tpo_application/utils/custom_appbar.dart';
 import 'package:tpo_application/utils/custom_dailogbox_hr.dart';
 import 'package:tpo_application/utils/custom_fbar.dart';
 import 'package:tpo_application/utils/custom_text_style.dart';
@@ -16,13 +17,7 @@ class HrListScreen extends StatelessWidget {
       //   preferredSize: const Size(0, 0),
       //   child: AppBar(),
 
-      appBar: AppBar(
-        title: const Text(
-          'HR List',
-          style: TextStyle(color: primaryText),
-        ),
-        centerTitle: true,
-      ),
+      appBar: appbarSize(context, child: CustomAppBar(title: 'HR List')),
       body: SafeArea(
         child: SizedBox.expand(
           child: Padding(

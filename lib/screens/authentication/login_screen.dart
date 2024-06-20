@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:tpo_application/controllers/login_controller.dart';
-import 'package:tpo_application/screens/company/company_list_screen.dart';
 import 'package:tpo_application/utils/constants.dart';
 import 'package:tpo_application/utils/custom_log.dart';
 import 'package:tpo_application/utils/custom_text_style.dart';
@@ -36,8 +36,10 @@ class LoginScreen extends StatelessWidget {
                       fontSize: 30,
                     ),
                   ),
+                  const Gap(25),
                   // * Email Field
                   TextFormField(
+                    controller: LoginController.instance.emailController,
                     validator: (value) => Validator.emailValidation(value),
                     decoration: customInputDecoration(
                         label: 'Email',
@@ -45,9 +47,12 @@ class LoginScreen extends StatelessWidget {
                           Icons.person,
                         )),
                   ),
+                  const Gap(10),
                   // * Password Field
                   Obx(
                     () => TextFormField(
+                      cursorColor: primary,
+                      controller: LoginController.instance.passwordController,
                       validator: (value) => Validator.passwordValidation(value),
                       obscureText: LoginController.instance.isHidden,
                       onTapOutside: (event) => FocusScope.of(context).unfocus(),
@@ -68,6 +73,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+                  const Gap(30),
                   // ! Login Button
                   SizedBox.fromSize(
                     size: const Size.fromHeight(50),
@@ -75,10 +81,7 @@ class LoginScreen extends StatelessWidget {
                       onPressed: () async {
                         if (!controller.loading) {
                           await controller.loginUser();
-                          if (!controller.loading) {
-                            Get.to(
-                                const CompanyListScreen()); // Navigate to HomePage after login
-                          }
+                         
                         } else {
                           customLog("Please wait");
                         }
