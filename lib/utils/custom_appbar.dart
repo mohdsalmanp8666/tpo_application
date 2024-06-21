@@ -17,12 +17,9 @@ PreferredSize appbarSize(
 
 class CustomAppBar extends StatelessWidget {
   final String title;
-  Widget? leadingWidget;
+  final Widget? leadingWidget;
 
-  CustomAppBar({
-    super.key,
-    required this.title,
-  });
+  const CustomAppBar({super.key, required this.title, this.leadingWidget});
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +31,7 @@ class CustomAppBar extends StatelessWidget {
         title,
         style: customTextStyle(),
       ),
+      centerTitle: true,
       leading: leadingWidget,
     );
   }

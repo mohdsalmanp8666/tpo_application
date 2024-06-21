@@ -31,7 +31,7 @@ class LoginController extends GetxController {
 
       if (emailController.text.trim() == 'abc@gmail.com' &&
           passwordController.text.trim() == '123456') {
-        Get.to(const CompanyListScreen());
+        Get.to(() => const CompanyListScreen());
       } else {
         errorToast("Invalid Email/Password!");
       }

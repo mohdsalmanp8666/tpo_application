@@ -1,8 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:tpo_application/utils/constants.dart';
 import 'package:tpo_application/utils/custom_appbar.dart';
+import 'package:tpo_application/utils/custom_back_button.dart';
 import 'package:tpo_application/utils/custom_dailogbox_hr.dart';
 import 'package:tpo_application/utils/custom_fbar.dart';
 import 'package:tpo_application/utils/custom_text_style.dart';
@@ -13,11 +15,17 @@ class HrListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: PreferredSize(
-      //   preferredSize: const Size(0, 0),
-      //   child: AppBar(),
-
-      appBar: appbarSize(context, child: CustomAppBar(title: 'HR List')),
+      appBar: appbarSize(
+        context,
+        child: CustomAppBar(
+          title: 'HR List',
+          leadingWidget: CustomBackButton(
+            onPressed: () {
+              Get.back();
+            },
+          ),
+        ),
+      ),
       body: SafeArea(
         child: SizedBox.expand(
           child: Padding(
@@ -27,7 +35,7 @@ class HrListScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SvgPicture.asset(
-                  'lib/assets/images/not_found.svg',
+                  'assets/svg/not_found.svg',
                   height: 200,
                   width: 150,
                 ),
@@ -44,7 +52,7 @@ class HrListScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: CustomFbar(
-        dailogBuilder: (context) => const CustomDailogboxHr(),
+        dailogBuilder: (context) => CustomDailogboxHr(),
       ),
     );
   }

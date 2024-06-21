@@ -1,10 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:tpo_application/screens/hr/hr_list_screen.dart';
 import 'package:tpo_application/utils/constants.dart';
+import 'package:tpo_application/utils/custom_appbar.dart';
+import 'package:tpo_application/utils/custom_back_button.dart';
 import 'package:tpo_application/utils/custom_dailog_box_company.dart';
 import 'package:tpo_application/utils/custom_fbar.dart';
 import 'package:tpo_application/utils/custom_text_style.dart';
@@ -12,18 +13,16 @@ import 'package:tpo_application/utils/custom_text_style.dart';
 class CompanyListScreen extends StatelessWidget {
   const CompanyListScreen({super.key});
 
-  void myDailogBox() {}
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Company List',
-          style: TextStyle(color: primaryText),
-        ),
-        centerTitle: true,
-      ),
+      appBar: appbarSize(context,
+          child: CustomAppBar(
+            title: "Company List",
+            leadingWidget: CustomBackButton(onPressed: () {
+              Get.back();
+            }),
+          )),
       body: SafeArea(
         child: SizedBox.expand(
           child: Padding(
@@ -33,7 +32,7 @@ class CompanyListScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SvgPicture.asset(
-                  'lib/assets/images/not_found.svg',
+                  'assets/svg/not_found.svg',
                   height: 200,
                   width: 150,
                 ),
@@ -49,7 +48,7 @@ class CompanyListScreen extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Get.to(const HrListScreen());
+                    Get.to(() => const HrListScreen());
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: primary,
@@ -57,7 +56,7 @@ class CompanyListScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: Text(
+                  child: AutoSizeText(
                     "Hr List",
                     style: customTextStyle(color: Colors.white),
                   ),
@@ -68,7 +67,7 @@ class CompanyListScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: CustomFbar(
-        dailogBuilder: (context) => const CustomDailogboxCompany(),
+        dailogBuilder: (context) => CustomDailogboxCompany(),
       ),
     );
   }

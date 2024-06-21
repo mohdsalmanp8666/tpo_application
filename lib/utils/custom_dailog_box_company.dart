@@ -1,30 +1,36 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:tpo_application/controllers/company_controller.dart';
 import 'package:tpo_application/utils/constants.dart';
 import 'package:tpo_application/utils/custom_text_style.dart';
 import 'package:tpo_application/utils/textfield_decoration.dart';
+import 'package:tpo_application/utils/validator.dart';
 
 class CustomDailogboxCompany extends StatelessWidget {
-  const CustomDailogboxCompany({super.key});
+  final controller = Get.put(CompanyController());
+
+  CustomDailogboxCompany({super.key});
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      // TODO:  Auto Size Text
-      title: const Text('Add Company'),
+      title: const AutoSizeText('Add Company'),
       content: Form(
+        key: key,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // TODO: Validator, controller, onTapOutside
             TextFormField(
+              controller: CompanyController.instance.companyNameController,
+              validator: (value) => Validator.commanValidation(value),
+              onTapOutside: (event) => FocusScope.of(context).unfocus,
               decoration: customInputDecoration(label: "Company Name"),
             ),
-            // TODO: Change SizedBox to Gap
-            const SizedBox(
-              height: 10,
-            ),
+            const Gap(10),
             DropdownButtonFormField(
+              validator: (value) => Validator.commanValidation(value),
               decoration: customInputDecoration(label: 'Mode of Communication'),
               items: const [
                 DropdownMenuItem(
@@ -42,12 +48,11 @@ class CustomDailogboxCompany extends StatelessWidget {
               ],
               onChanged: (value) => {},
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            // TODO: Validator, controller, onTapOutside
-
+            const Gap(10),
             TextFormField(
+              controller: CompanyController.instance.contactController,
+              validator: (value) => Validator.phoneValidation(value),
+              onTapOutside: (event) => FocusScope.of(context).unfocus,
               decoration: customInputDecoration(label: 'Contact'),
             ),
           ],
@@ -58,15 +63,14 @@ class CustomDailogboxCompany extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text(
+          child: AutoSizeText(
             "Cancel",
             style: customTextStyle(fontSize: 16, color: Colors.red.shade400),
           ),
         ),
-        // TODO: Chnage Outlined Button
-        TextButton(
+        OutlinedButton(
           onPressed: () {},
-          child: Text(
+          child: AutoSizeText(
             "Add",
             style: customTextStyle(fontSize: 16, color: primary),
           ),

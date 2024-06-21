@@ -1,13 +1,11 @@
-// TODO: Company controller
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:tpo_application/utils/custom_log.dart';
 import 'package:tpo_application/utils/custom_toasts.dart';
 
-class CompanyController extends GetxController {
-  static CompanyController get instance => Get.find<CompanyController>();
+class HrController extends GetxController {
+  static HrController get instance => Get.find<HrController>();
 
   final _loading = false.obs;
   bool get loading => _loading.value;
@@ -15,9 +13,11 @@ class CompanyController extends GetxController {
 
   GlobalKey<FormState> key = GlobalKey<FormState>();
 
-  final companyNameController = TextEditingController();
-  final contactController = TextEditingController();
-  final modeOfCommunicationController = TextEditingController();
+  final hrNameController = TextEditingController();
+  final hrEmailController = TextEditingController();
+  final hrContactController = TextEditingController();
+  final hrPostController = TextEditingController();
+  final hrAltContactNumberController = TextEditingController();
 
   addCompany() async {
     try {
@@ -31,7 +31,7 @@ class CompanyController extends GetxController {
       // If the form is valid, catch any exceptions that may occur
       await Future.delayed(const Duration(seconds: 2));
       Get.back();
-      successToast("Company Added Successfully");
+      successToast("HR Added Successfully");
     } catch (e) {
       // If an exception occurs, log it
       customLog(e);

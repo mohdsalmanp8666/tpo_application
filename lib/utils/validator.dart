@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 
 class Validator {
-
   // TODO: Dynamic Validation
 
   // * Email Validation
@@ -26,6 +25,14 @@ class Validator {
   }
 
 // TODO: Name/Company Name Validation
+
+// * Common Validation
+  static commanValidation(String? value) {
+    if (value == null || value.isEmpty) {
+      return "Enter Valid Name";
+    }
+    return;
+  }
 
 // * Phone Number Validation
   static phoneValidation(String? value) {

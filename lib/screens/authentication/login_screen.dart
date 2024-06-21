@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:tpo_application/controllers/login_controller.dart';
@@ -27,20 +28,25 @@ class LoginScreen extends StatelessWidget {
             child: Form(
               key: LoginController.instance.key,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  const Gap(25),
+                  SvgPicture.asset(
+                    'assets/svg/login.svg',
+                    height: 200,
+                    width: 200,
+                  ),
+                  const Gap(10),
                   AutoSizeText(
                     "Login",
-                    style: customTextStyle(
-                      fontSize: 30,
-                    ),
+                    style: customTextStyle(fontSize: 30, color: primary),
                   ),
                   const Gap(25),
                   // * Email Field
                   TextFormField(
                     controller: LoginController.instance.emailController,
                     validator: (value) => Validator.emailValidation(value),
+                    onTapOutside: (event) => FocusScope.of(context).unfocus(),
                     decoration: customInputDecoration(
                         label: 'Email',
                         prefixIcon: const Icon(
@@ -81,7 +87,6 @@ class LoginScreen extends StatelessWidget {
                       onPressed: () async {
                         if (!controller.loading) {
                           await controller.loginUser();
-                         
                         } else {
                           customLog("Please wait");
                         }
